@@ -40,9 +40,9 @@ int main()
             actions.push_back(action);
         }
         // Determine new state
-        int attencance = std::accumulate(actions.begin(), actions.end(), 0);
+        int attendance = std::accumulate(actions.begin(), actions.end(), 0);
         int new_state;
-        if (attencance > static_cast<int>(N_AGENTS) / 2) {
+        if (attendance > static_cast<int>(N_AGENTS) / 2) {
             new_state = 0;
         } else {
             new_state = 1;
@@ -55,9 +55,9 @@ int main()
 
         // Update environment
         environment.update_history(new_state);
-        environment.update_attendance_history(attencance);
+        environment.update_attendance_history(attendance);
 
-        std::cout << attencance << std::endl;
+        std::cout << attendance << std::endl;
     }
 
     return 0;

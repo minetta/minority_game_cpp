@@ -31,10 +31,10 @@ void Environment::update_attendance_history(const int attencance) {
 std::ostream& operator<<(std::ostream& os, Environment& environment) {
     os << "History:" << std::endl;
     os << "\t";
-    std::vector<int>::iterator itr = environment.history.begin();
-    for (; itr != environment.history.end(); ++itr) {
-        os << *itr << " ";
+    for (auto& state : environment.history) {
+        os << state << " ";
     }
+
     os << std::endl;
 
     return os;
