@@ -30,13 +30,13 @@ int main()
 
     // Iteration
     for (int itr = 0; itr < N_ITERS; ++itr) {
-        // M latest history string
-        std::vector<int> history_string = environment.get_latest_history_string(M);
+        // M recent history
+        std::vector<int> history = environment.get_recent_history(M);
 
         // Get agents' actions
         std::vector<int> actions;
         for (auto& agent : agents) {
-            int action = agent.get_action(history_string);
+            int action = agent.get_action(history);
             actions.push_back(action);
         }
         // Determine new state
@@ -50,7 +50,7 @@ int main()
 
         // Update strategies' score
         for (auto& agent : agents) {
-            agent.update_scores(history_string, new_state);
+            agent.update_scores(history, new_state);
         }
 
         // Update environment

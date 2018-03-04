@@ -9,7 +9,7 @@ class Environment {
     std::vector<int> attendance_history;
 public:
     Environment(const int);
-    std::vector<int> get_latest_history_string(const int);
+    std::vector<int> get_recent_history(const int);
     void update_history(const int);
     void update_attendance_history(const int);
     friend std::ostream& operator<<(std::ostream& os, Environment& environment);

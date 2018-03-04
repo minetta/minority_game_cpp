@@ -10,22 +10,22 @@ Environment::Environment(const int min_m) {
     }
 }
 
-std::vector<int> Environment::get_latest_history_string(const int m) {
-    std::vector<int> latest_history_string;
+std::vector<int> Environment::get_recent_history(const int m) {
+    std::vector<int> recent_history;
     std::vector<int>::iterator itr = history.end() - m;
     for (; itr != history.end(); ++itr) {
-        latest_history_string.push_back((*itr));
+        recent_history.push_back((*itr));
     }
 
-    return latest_history_string;
+    return recent_history;
 }
 
 void Environment::update_history(const int new_state) {
     history.push_back(new_state);
 }
 
-void Environment::update_attendance_history(const int attencance) {
-    attendance_history.push_back(attencance);
+void Environment::update_attendance_history(const int attendance) {
+    attendance_history.push_back(attendance);
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& environment) {

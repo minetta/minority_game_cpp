@@ -5,22 +5,22 @@
 
 Agent::Agent(const int s, const int m) {
     for (int i = 0; i < s; ++i) {
-        int n_actions = std::pow(2, m);
-        strategies.push_back(Strategy(n_actions));
+        int n_histories = std::pow(2, m);
+        strategies.push_back(Strategy(n_histories));
     }
 }
 
-int Agent::get_action(const std::vector<int>& history_string) {
+int Agent::get_action(const std::vector<int>& history) {
     Strategy* best_strategy_ptr = get_best_strategy_ptr();
-    const int history_string_num = get_history_string_num(history_string);
-    const int action = (*best_strategy_ptr).get_action(history_string_num);
+    const int history_num = get_history_num(history);
+    const int action = (*best_strategy_ptr).get_action(history_num);
     return action;
 }
 
-void Agent::update_scores(const std::vector<int>& history_string, const int new_state) {
-    const int history_string_num = get_history_string_num(history_string);
+void Agent::update_scores(const std::vector<int>& history, const int new_state) {
+    const int history_num = get_history_num(history);
     for (auto& strategy : strategies) {
-        strategy.update_score(history_string_num, new_state);
+        strategy.update_score(history_num, new_state);
     }
 }
 
