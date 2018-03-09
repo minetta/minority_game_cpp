@@ -2,6 +2,8 @@
 .DS_Storea
 memo.md
 test.cpp
+results
+.ipynb_checkpoints
 
 # Prerequisites
 *.d

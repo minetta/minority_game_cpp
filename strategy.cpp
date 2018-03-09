@@ -7,15 +7,15 @@ static std::mt19937 rng(34);
 Strategy::Strategy(const int n_histories) {
     score = 0;
     for (int i = 0; i < n_histories; ++i) {
-        actions.push_back(rng() % 2);
+        actions.emplace_back(rng() % 2);
     }
 }
 
-int Strategy::get_score() {
+int& Strategy::get_score() {
     return score;
 }
 
-int Strategy::get_action(const int history_num) {
+int& Strategy::get_action(const int history_num) {
     return actions.at(history_num);
 }
 
