@@ -1,45 +1,39 @@
 #include <random>
-#include <vector>
 #include "environment.h"
 
 static std::mt19937 rng(34);
 
-Environment::Environment(const int min_m) {
-    for (int i = 0; i < min_m; ++i) {
-        history.emplace_back(rng() % 2);
-    }
+Environment::Environment()
+{
 }
 
-std::vector<int> Environment::get_recent_history(const int m) {
+std::vector<int> Environment::get_recent_history(const int m)
+{
     std::vector<int> recent_history;
-    std::vector<int>::iterator itr = history.end() - m;
-    for (; itr != history.end(); ++itr) {
-        recent_history.emplace_back((*itr));
+
+    if (m > this->history.size()) {
+        for (unsigned i = 0; i < m; ++i) {
+            recent_history.emplace_back(rng() % 2);
+        }
+    } else {
+        for (auto iter = this->history.end() - m; iter != this->history.end(); ++iter) {
+            recent_history.emplace_back(*iter);
+        }
     }
     return recent_history;
 }
 
-void Environment::update_history(const int new_state) {
-    history.emplace_back(new_state);
+std::vector<int>& Environment::get_attendance_history()
+{
+    return this->attendance_history;
 }
 
-void Environment::update_attendance_history(const int attendance) {
-    attendance_history.emplace_back(attendance);
+void Environment::update_history(const int new_state)
+{
+    this->history.emplace_back(new_state);
 }
 
-std::vector<int>& Environment::get_attendance_history() {
-    return attendance_history;
-};
-
-
-std::ostream& operator<<(std::ostream& os, Environment& environment) {
-    os << "History:" << std::endl;
-    os << "\t";
-    for (auto& state : environment.history) {
-        os << state << " ";
-    }
-
-    os << std::endl;
-
-    return os;
+void Environment::update_attendance_history(const int attendance)
+{
+    this->attendance_history.emplace_back(attendance);
 }
